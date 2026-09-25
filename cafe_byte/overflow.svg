@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="470" viewBox="0 0 940 470" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#455a64"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#c62828"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="940" height="470" fill="#ffffff"/>
+
+  <!-- ================= DIRECCIONES ================= -->
+  <text x="15" y="40" font-size="13" fill="#455a64">Direcciones &#8594;</text>
+  <text x="400" y="40" font-size="13" fill="#455a64" text-anchor="middle" font-family="Consolas, monospace">rbp-1008  &#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;  rbp-5</text>
+  <text x="807" y="40" font-size="13" fill="#455a64" text-anchor="middle" font-family="Consolas, monospace">rbp-4 &#183;&#183;&#183; rbp-1</text>
+
+  <!-- ================= FILA 1 : ANTES ================= -->
+  <text x="15" y="82" font-size="14" font-weight="bold" fill="#37474f">ANTES</text>
+  <text x="15" y="100" font-size="11" fill="#78909c">(normal)</text>
+  <rect x="120" y="52" width="560" height="60" fill="#eceff1" stroke="#607d8b" stroke-width="2"/>
+  <text x="400" y="88" font-size="14" fill="#37474f" text-anchor="middle">buffer 'local_3f8'  (1004 bytes basura)</text>
+  <rect x="690" y="52" width="235" height="60" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="807" y="80" font-size="14" fill="#1b5e20" text-anchor="middle" font-family="Consolas, monospace">00  00  00  00</text>
+  <text x="807" y="100" font-size="12" fill="#2e7d32" text-anchor="middle" font-weight="bold">local_c = 0</text>
+
+  <!-- flecha enviar -->
+  <line x1="400" y1="112" x2="400" y2="150" stroke="#455a64" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="412" y="135" font-size="12" fill="#455a64">enviamos el payload (1008 bytes) por gets()</text>
+
+  <!-- ================= FILA 2 : PAYLOAD ================= -->
+  <text x="15" y="185" font-size="14" font-weight="bold" fill="#37474f">PAYLOAD</text>
+  <text x="15" y="203" font-size="11" fill="#78909c">(1008)</text>
+  <rect x="120" y="155" width="560" height="60" fill="#eceff1" stroke="#607d8b" stroke-width="2"/>
+  <text x="400" y="191" font-size="14" fill="#37474f" text-anchor="middle" font-family="Consolas, monospace">'A' &#215; 1004   (relleno = offset)</text>
+  <rect x="690" y="155" width="235" height="60" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+  <text x="807" y="183" font-size="14" fill="#e65100" text-anchor="middle" font-family="Consolas, monospace">05  00  00  00</text>
+  <text x="807" y="203" font-size="12" fill="#ef6c00" text-anchor="middle" font-weight="bold">el 5 en LE (4 B)</text>
+
+  <!-- llaves / medidas -->
+  <text x="400" y="232" font-size="11" fill="#90a4ae" text-anchor="middle">&#8968; 1004 bytes &#8969;</text>
+  <text x="807" y="232" font-size="11" fill="#90a4ae" text-anchor="middle">&#8968; 4 bytes &#8969;</text>
+
+  <!-- nota gets() : texto sobre las flechas, sin caja (como en el ASCII) -->
+  <text x="240" y="258" font-size="13" fill="#616161" font-style="italic">gets() copia TODO sin comprobar el tama&#241;o &#8594; los 4 bytes de m&#225;s caen sobre local_c</text>
+  <line x1="400" y1="265" x2="400" y2="323" stroke="#607d8b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="807" y1="265" x2="807" y2="323" stroke="#c62828" stroke-width="2" marker-end="url(#arrowRed)"/>
+
+  <!-- ================= FILA 3 : DESPUES ================= -->
+  <text x="15" y="360" font-size="14" font-weight="bold" fill="#37474f">DESPU&#201;S</text>
+  <rect x="120" y="327" width="560" height="60" fill="#eceff1" stroke="#607d8b" stroke-width="2"/>
+  <text x="400" y="363" font-size="14" fill="#37474f" text-anchor="middle" font-family="Consolas, monospace">41 41 41 ...(1004 veces la 'A')... 41 41 41</text>
+  <rect x="690" y="327" width="235" height="60" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+  <text x="807" y="355" font-size="14" fill="#b71c1c" text-anchor="middle" font-family="Consolas, monospace">05  00  00  00</text>
+  <text x="807" y="375" font-size="12" fill="#c62828" text-anchor="middle" font-weight="bold">local_c = 5</text>
+
+  <!-- resultado -->
+  <rect x="560" y="405" width="365" height="46" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="742" y="424" font-size="13" fill="#0d47a1" text-anchor="middle" font-weight="bold">&#161;se cumplen A y B!</text>
+  <text x="742" y="441" font-size="12" fill="#1565c0" text-anchor="middle" font-family="Consolas, monospace">local_c &#8800; 0   y   local_c == 5</text>
+</svg>
